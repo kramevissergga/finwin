@@ -588,7 +588,8 @@ input[type=search] {
   padding-top: 5rem;
   padding-bottom: 1.875rem;
   color: #fff;
-  position: relative
+  position: relative;
+  overflow: hidden
 }
 .footer::before {
   content: "";
@@ -1086,8 +1087,9 @@ input[type=search] {
   padding: .75rem;
   position: relative
 }
-.partners__item._active .partners__item {
-  box-shadow: .125rem .9375rem 1rem 0 rgba(0,0,0,.25)
+.partners__item--dark {
+  border-color: #dddfe5;
+  background-color: #343d4a
 }
 .partners__logo {
   position: absolute;
@@ -1100,11 +1102,6 @@ input[type=search] {
   width: calc(100% - 1.5rem);
   transition: all .3s
 }
-.partners__item._active .partners__logo {
-  top: .75rem;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%)
-}
 .partners__text {
   color: #000;
   text-align: center;
@@ -1116,11 +1113,8 @@ input[type=search] {
   transform: translateY(10%);
   transition: all .3s
 }
-.partners__item._active .partners__text {
-  opacity: 1;
-  -webkit-transform: none;
-  transform: none;
-  transition-delay: .1s
+.partners__item--dark .partners__text {
+  color: #fff
 }
 .splide__container {
   box-sizing: border-box;
@@ -1971,13 +1965,15 @@ input[type=search] {
   .partners__desc {
     font-size: .875rem
   }
-  .partners__item._active .partners__logo {
+}
+@media (any-hover:hover)and (max-width:61.99875em) {
+  .partners__item:hover .partners__logo {
     -webkit-transform: translateX(-50%) scale(.7);
     transform: translateX(-50%) scale(.7)
   }
 }
-@media (any-hover:hover)and (max-width:61.99875em) {
-  .partners__item:hover .partners__logo {
+@media (not (any-hover:hover))and (max-width:61.99875em) {
+  .partners__item._active .partners__logo {
     -webkit-transform: translateX(-50%) scale(.7);
     transform: translateX(-50%) scale(.7)
   }
@@ -2328,6 +2324,22 @@ input[type=search] {
   .splide__slide:first-child .item-why-us .item-why-us__image {
     background: linear-gradient(180deg,#ffc700 0,rgba(255,255,255,.4) 100%);
     box-shadow: 0 .0625rem .25rem 0 rgba(25,33,61,.08)
+  }
+}
+@media all and not (any-hover:hover) {
+  .partners__item._active .partners__item {
+    box-shadow: .125rem .9375rem 1rem 0 rgba(0,0,0,.25)
+  }
+  .partners__item._active .partners__logo {
+    top: .75rem;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%)
+  }
+  .partners__item._active .partners__text {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+    transition-delay: .1s
   }
 }
 @media screen and (-ms-high-contrast:none) {

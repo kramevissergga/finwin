@@ -3801,18 +3801,16 @@
         updateHeaderHeights();
     }));
     document.addEventListener("DOMContentLoaded", (function() {
-        if (!window.matchMedia("(any-hover: hover)").matches) {
-            const partnersContainer = document.querySelector(".partners");
-            if (partnersContainer) partnersContainer.addEventListener("click", (function(event) {
-                const targetItem = event.target.closest(".partners__item");
-                if (targetItem) {
-                    document.querySelectorAll(".partners__item").forEach((item => {
-                        item.classList.remove("_active");
-                    }));
-                    targetItem.classList.add("_active");
-                }
-            }));
-        }
+        const partnersContainer = document.querySelector(".partners");
+        if (partnersContainer) partnersContainer.addEventListener("click", (function(event) {
+            const targetItem = event.target.closest(".partners__item");
+            if (targetItem) {
+                document.querySelectorAll(".partners__item").forEach((item => {
+                    item.classList.remove("_active");
+                }));
+                targetItem.classList.add("_active");
+            }
+        }));
     }));
     window["FLS"] = false;
     menuInit();
