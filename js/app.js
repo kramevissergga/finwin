@@ -3796,6 +3796,7 @@
             document.documentElement.style.setProperty("--header-height", `${headerHeight}px`);
         }
     }
+    window.addEventListener("resize", updateHeaderHeights);
     window.addEventListener("load", (function() {
         updateHeaderHeights();
     }));
