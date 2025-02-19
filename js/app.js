@@ -3812,6 +3812,94 @@
             }
         }));
     }));
+    const slider = document.querySelector(".hero__slider");
+    if (slider) {
+        const elements = [ ...slider.querySelectorAll(".hero__image") ];
+        const positions = [ {
+            top: "60%",
+            left: "16%",
+            zIndex: 1,
+            transform: "none",
+            transitionDelay: "0s, 0s, 0s, 0.5s"
+        }, {
+            top: "30%",
+            left: "0",
+            zIndex: 1,
+            transform: "none",
+            transitionDelay: "0s"
+        }, {
+            top: "0",
+            left: "16%",
+            zIndex: 1,
+            transform: "none",
+            transitionDelay: "0s"
+        }, {
+            top: "0",
+            left: "49.5%",
+            zIndex: 1,
+            transform: "none",
+            transitionDelay: "0s"
+        }, {
+            top: "30%",
+            left: "65.7%",
+            zIndex: 1,
+            transform: "none",
+            transitionDelay: "0s"
+        }, {
+            top: "27.65%",
+            left: "33%",
+            transform: "scale(1.26)",
+            zIndex: 2,
+            transitionDelay: "0s"
+        } ];
+        let pauseTimeout, currentIndex = 0, isPaused = false;
+        const triggerEvent = stage => {
+            const activeElement = elements.find(((el, i) => (i + currentIndex) % positions.length === positions.length - 1));
+            if (activeElement) document.dispatchEvent(new CustomEvent("sliderChange", {
+                detail: {
+                    index: [ ...slider.children ].indexOf(activeElement),
+                    slider,
+                    stage
+                }
+            }));
+        };
+        const applyPositions = () => {
+            triggerEvent("before");
+            slider.classList.add("_slide");
+            elements.forEach(((el, i) => Object.assign(el.style, positions[(i + currentIndex) % positions.length])));
+            setTimeout((() => {
+                slider.classList.remove("_slide");
+                triggerEvent("after");
+            }), 500);
+        };
+        elements.forEach((el => el.addEventListener("click", (() => {
+            if (slider.classList.contains("_slide")) return;
+            elements.push(elements.splice(elements.indexOf(el), 1)[0]);
+            currentIndex = 0;
+            applyPositions();
+            clearTimeout(pauseTimeout);
+            isPaused = true;
+            pauseTimeout = setTimeout((() => isPaused = false), 3e3);
+        }))));
+        let lastTime = 0;
+        (function animate(timestamp) {
+            if (!isPaused && timestamp - lastTime >= 4e3) {
+                currentIndex = (currentIndex + 1) % positions.length;
+                applyPositions();
+                lastTime = timestamp;
+            }
+            requestAnimationFrame(animate);
+        })();
+        applyPositions();
+    }
+    document.addEventListener("sliderChange", (e => {
+        const infoBlock = e.detail.slider.closest(".hero")?.querySelector(".hero__info");
+        if (infoBlock) {
+            const infoItems = [ ...infoBlock.querySelectorAll(".hero__info-item") ];
+            infoBlock.style.minHeight = `${Math.max(...infoItems.map((item => item.scrollHeight)))}px`;
+            infoItems.forEach(((item, i) => item.classList.toggle("_active", i === e.detail.index)));
+        }
+    }));
     window["FLS"] = false;
     menuInit();
     spoilers();
