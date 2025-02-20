@@ -741,6 +741,7 @@ input[type=search] {
   -webkit-filter: blur(12.5rem);
   filter: blur(12.5rem);
   aspect-ratio: 939/692;
+  min-height: 0;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -762,6 +763,7 @@ input[type=search] {
 }
 .hero__slider {
   aspect-ratio: 735/702;
+  min-height: 0;
   margin-left: -2.9375rem;
   position: relative
 }
@@ -899,6 +901,7 @@ input[type=search] {
 }
 .item-why-us__image {
   aspect-ratio: 100%;
+  min-height: 0;
   width: 5.125rem;
   padding: .875rem;
   border-radius: .375rem;
@@ -960,6 +963,7 @@ input[type=search] {
   background: url(../img/how-to/arrow.svg) no-repeat center/contain;
   aspect-ratio: 234/28;
   position: absolute;
+  min-height: 0;
   top: 0;
   left: 0
 }
@@ -971,6 +975,7 @@ input[type=search] {
 .how-to__image {
   width: 6.25rem;
   aspect-ratio: 1/1;
+  min-height: 0;
   padding: 1.75rem;
   border-radius: 1.5rem;
   border-bottom-left-radius: 0;
@@ -1010,6 +1015,7 @@ input[type=search] {
 }
 .info-section__image {
   aspect-ratio: 610/428;
+  min-height: 0;
   box-shadow: 0 1.25rem 1.5625rem -.3125rem rgba(0,0,0,.1),0 0 .625rem 0 rgba(0,0,0,.07);
   border-radius: 1.75rem;
   overflow: hidden
@@ -1041,6 +1047,7 @@ input[type=search] {
 }
 .about-us__main-image {
   aspect-ratio: 504/813;
+  min-height: 0;
   position: relative;
   min-width: 0
 }
@@ -1051,6 +1058,7 @@ input[type=search] {
   right: 0;
   width: 98.809524%;
   aspect-ratio: 498/745;
+  min-height: 0;
   -webkit-transform: translate(6.25rem,-5rem);
   transform: translate(6.25rem,-5rem);
   background-color: #34e0a1
@@ -1061,7 +1069,8 @@ input[type=search] {
 }
 .about-us__image {
   width: 3.75rem;
-  aspect-ratio: 1/1
+  aspect-ratio: 1/1;
+  min-height: 0
 }
 .about-us__title {
   font-size: 1.25rem;
@@ -2159,7 +2168,8 @@ input[type=search] {
     -webkit-transform: none;
     transform: none;
     width: 70%;
-    aspect-ratio: 532/644
+    aspect-ratio: 532/644;
+    min-height: 0
   }
   .about-us__main-image img {
     position: absolute;
