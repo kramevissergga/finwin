@@ -3538,6 +3538,28 @@
             });
             whyusSlider.mount();
         }
+        var aboutLeasingSliderEl = document.querySelector(".about-leasing__slider");
+        if (aboutLeasingSliderEl) {
+            var aboutLeasingSlider = new Splide(aboutLeasingSliderEl, {
+                perPage: 2,
+                arrows: false,
+                pagination: true,
+                gap: 8,
+                destroy: true,
+                padding: {
+                    right: 169
+                },
+                breakpoints: {
+                    767.98: {
+                        destroy: false
+                    },
+                    599.98: {
+                        perPage: 1
+                    }
+                }
+            });
+            aboutLeasingSlider.mount();
+        }
     }));
     class ScrollWatcher {
         constructor(props) {
@@ -3801,11 +3823,10 @@
         updateHeaderHeights();
     }));
     document.addEventListener("DOMContentLoaded", (function() {
-        const partnersContainer = document.querySelector(".partners");
-        if (partnersContainer) partnersContainer.addEventListener("click", (function(event) {
-            const targetItem = event.target.closest(".partners__item");
+        document.addEventListener("click", (function(event) {
+            const targetItem = event.target.closest("[data-partner]");
             if (targetItem) {
-                document.querySelectorAll(".partners__item").forEach((item => {
+                document.querySelectorAll("[data-partner]").forEach((item => {
                     item.classList.remove("_active");
                 }));
                 targetItem.classList.add("_active");
