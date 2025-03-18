@@ -1578,7 +1578,7 @@ input[type=search] {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,.3);
+  background-color: rgba(0,0,0,.1);
   z-index: 2
 }
 .gallery-hero__image img {
@@ -3558,6 +3558,12 @@ input[type=search] {
   }
   .dir-group__items {
     gap: .875rem
+  }
+  .dir-group__item:nth-child(6) {
+    grid-row: 4
+  }
+  .dir-group__item:nth-child(8) {
+    grid-row: 7
   }
   .blog-section {
     grid-template-columns: 1.0625rem 1fr minmax(auto,77.5rem) 1fr 1.0625rem
