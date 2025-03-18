@@ -3560,6 +3560,58 @@
             });
             aboutLeasingSlider.mount();
         }
+        const blogSlider = document.querySelectorAll(".blog-section__slider");
+        blogSlider.forEach(((slider, index) => {
+            const parent = slider.closest("[data-slider-parent]");
+            let prevArrow = null;
+            let nextArrow = null;
+            if (parent) {
+                prevArrow = parent.querySelector(".slider-arrow--prev");
+                nextArrow = parent.querySelector(".slider-arrow--next");
+            }
+            let options = {
+                perPage: 3,
+                arrows: false,
+                pagination: false,
+                omitEnd: true,
+                padding: {
+                    right: 100
+                },
+                gap: 20,
+                breakpoints: {
+                    991.98: {
+                        perPage: 2
+                    },
+                    767.98: {
+                        perPage: 1,
+                        padding: {
+                            right: 307
+                        }
+                    },
+                    699.98: {
+                        perPage: 1,
+                        padding: {
+                            right: 150
+                        }
+                    },
+                    499.98: {
+                        destroy: true
+                    }
+                }
+            };
+            function refreshButtons() {
+                if (slider.closest("[hidden]") !== null) return;
+                if (prevArrow) prevArrow.disabled = splideInstance.index === 0;
+                if (nextArrow) nextArrow.disabled = splideInstance.index === splideInstance.Components.Controller.getEnd();
+            }
+            const splideInstance = new Splide(slider, options);
+            splideInstance.on("mounted move", (() => {
+                refreshButtons();
+            }));
+            splideInstance.mount();
+            if (prevArrow) prevArrow.addEventListener("click", (() => splideInstance.go("<")));
+            if (nextArrow) nextArrow.addEventListener("click", (() => splideInstance.go(">")));
+        }));
     }));
     class ScrollWatcher {
         constructor(props) {
